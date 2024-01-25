@@ -73,6 +73,7 @@ pip install webdriver-manager
 - **JSON wire protocol over HTTP:** JSON is an acronym for JavaScript Object Notation. It is an open standard that provides a transport mechanism for transferring data between client and server on the web.
 - **Browser Drivers:** Selenium browser drivers are native to each browser, interacting with the browser by establishing a secure connection. Selenium supports different browser drivers such as ChromeDriver, GeckoDriver, Microsoft Edge WebDriver, SafariDriver, and InternetExplorerDriver.
 - **Browsers:** Selenium provides support for multiple browsers like Chrome, Firefox, Safari, Internet Explorer etc.
+- **W3C Protocol**. Use standards and specifications that promote compatibility across web technologies
 
 ## Basic Selenium Concepts
 
@@ -84,6 +85,37 @@ Locators help identify web elements on a page. Common locators include:
 - Class Name 
 - Xpath 
 - CSS Selectors
+
+| Locators             | Description                                                                                |
+|:---------------------|--------------------------------------------------------------------------------------------|
+| By.ID                | The first element with the id attribute value matching the location will be returned.      |
+| By.NAME              | The first element with the name attribute value matching the location will be returned.    |
+| By.XPATH             | The first element with the xpath syntax matching the location will be returned.            |
+| By.LINK_TEXT         | The first element with the link text value matching the location will be returned.         |
+| By.PARTIAL_LINK_TEXT | The first element with the partial link text value matching the location will be returned. |
+| By.TAG_NAME          | The first element with the given tag name will be returned.                                |	
+| By.CLASS_NAME        | the first element with the matching class attribute name will be returned.                 |	
+| By.CSS_SELECTOR      | The first element with the matching CSS selector will be returned.                         |		
+
+## By.ID
+With this strategy, the first element with the id attribute value matching the location will be returned. If no element has a matching id attribute, a NoSuchElementException will be raised. 
+
+> Syntax: 
+
+```python
+driver.find_element(By.ID, "id_of_element")
+```
+
+Example: For instance, consider this page source: 
+```html
+<input autocomplete="off" placeholder="Full Name" type="text" 
+       id="userName" class=" mr-sm-2 form-control">
+```
+then the code in python:
+```python
+user_name = driver.find_element(By.ID, 'userName')
+```
+
 
 ### Interacting with Elements 
 
@@ -128,3 +160,4 @@ Selenium Best Practice
 
 > Selenium Testing: https://www.browserstack.com/selenium
 
+> Install Firefox https://www.omgubuntu.co.uk/2022/04/how-to-install-firefox-deb-apt-ubuntu-22-04
