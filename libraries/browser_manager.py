@@ -1,35 +1,42 @@
+import logging
+
 from selenium import webdriver
-from selenium.webdriver.chrome.service import Service as ChromeService
-from webdriver_manager.chrome import ChromeDriverManager
-from selenium.webdriver.firefox.service import Service as FirefoxService
-from webdriver_manager.firefox import GeckoDriverManager
+from utils.logger import get_logger
+
+LOGGER = get_logger(__name__, logging.DEBUG)
+
 
 class BrowserManager:
-    def __init__(self, driver):
-        self.driver = driver
+    def __init__(self):
+        self.driver = None
         self.browser_list = ["CHROME", "FIREFOX", "EDGE"]
 
     def launch_browser(self, browser):
         print(browser)
         browser = browser.upper()
+
         if browser in self.browser_list:
-            print("Browser supported")
-            if browser == "CHROME":
-                self.driver = webdriver.Chrome()
-            elif browser == "FIREFOX":
-                self.driver = webdriver.Firefox()
-            else:
-                self.driver = webdriver.Edge()
+
+            match browser:
+                case "CHROME":
+                    self.driver = webdriver.Chrome()
+                case "FIREFOX":
+                    self.driver = webdriver.Firefox()
+                case "EDGE":
+                    self.driver = webdriver.Edge()
+            LOGGER.debug("Browser supported")
         else:
-            print("Unsupported browser")
+            LOGGER.error("Unsupported browser")
+
+        return self.driver
 
     def browser_version(self):
-        return self.driver.capabilities['browserVersion']
+        return self.driver.capabilities['browserVersion'] if self.driver else None
 
 
 if __name__ == '__main__':
-    b = BrowserManager(driver=webdriver)
-    b.launch_browser("Firefox")
+    b = BrowserManager()
+    b.launch_browser("Edge")
     b.driver.get("http://demoqa.com")
     print(b.driver.title)
     print(b.browser_version())

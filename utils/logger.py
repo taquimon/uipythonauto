@@ -1,9 +1,3 @@
-"""
-(c) Copyright Jalasoft. 2023
-
-logger.py
-    configuration of logger file
-"""
 import logging
 import os
 import pathlib
