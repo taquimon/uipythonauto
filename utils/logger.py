@@ -27,6 +27,8 @@ def get_logger(name, level=DEFAULT_LOG_LEVEL, log_format=DEFAULT_LOG_FORMAT):
     logger = logging.getLogger(name)
     log_file_name = datetime.now().strftime("%m_%d_%Y_%H_%M_%S")
 
+    if (logger.hasHandlers()):
+        logger.handlers.clear()
     for handler in logger.handlers:
         logger.removeHandler(handler)
     handler = logging.StreamHandler(sys.__stdout__)

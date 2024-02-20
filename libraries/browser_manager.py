@@ -33,6 +33,9 @@ class BrowserManager:
     def browser_version(self):
         return self.driver.capabilities['browserVersion'] if self.driver else None
 
+    def scroll_down(self):
+        self.driver.execute_script("window.scrollTo(0, document.body.scrollHeight);")
+
 
 if __name__ == '__main__':
     b = BrowserManager()

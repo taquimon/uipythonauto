@@ -12,7 +12,7 @@ from utils.logger import get_logger
 LOGGER = get_logger(__name__, logging.DEBUG)
 
 
-class TestElementsTextBox:
+class TestElementsCheckBox:
 
     # ---------------------------
     # Class level setup/teardown
@@ -51,37 +51,13 @@ class TestElementsTextBox:
 
     # @pytest.mark.usefixtures("driver")
 
-    # @pytest.mark.usefixtures("browser")
-    def test_fill_text_box_elements(self, browser):
-        LOGGER.info("Test Elements TextBox")
-        # elements_menu = driver.find_element(By.XPATH, "//h5[text()='Elements']")
-        # elements_menu.click()
-        # print(driver.title)
-        # text_box = driver.find_element(By.XPATH, "//span[contains(@class, 'text') and text() = 'Text Box']")
-        # text_box.click()
-        #
-        # driver.find_element(By.ID, "userName").send_keys("taquimon")
-        #
-        # time.sleep(5)
+    def test_checkbox(self, browser):
         browser.get("http://demoqa.com/text-box")
-
-        textbox = ElementsTextBox(browser)
-        textbox.navigate_to_elements_text_box_page()
-        textbox.enter_full_name("Edwin Taquichiri")
-        textbox.enter_email("taquimon@gmail.com")
-        textbox.enter_current_address("My Address")
-        textbox.enter_permanent_address("Ticti Norte")
-        browser.execute_script("window.scrollTo(0, document.body.scrollHeight);")
-        textbox.click_submit()
-
-    def test_fill_text_box_elements_2(self, browser):
-        LOGGER.info("Test Elements TextBox 2")
-        browser.get("http://demoqa.com/text-box")
-
-        textbox = ElementsTextBox(browser)
-        textbox.navigate_to_elements_text_box_page()
-        textbox.enter_full_name("Edwin Taquichiri")
-        textbox.enter_email("taquimon@gmail.com")
+        check_box = ElementsCheckBox(browser)
+        check_box.navigate_to_check_box_page()
+        check_box.click_on_home_checkbox()
+        check_box.click_on_desktop_checkbox()
+        time.sleep(3)
 
 # if __name__ == '__main__':
 #     pytest.main()
